@@ -1,7 +1,7 @@
 import { Int32 } from "bson"
 import mongoose from "mongoose"
 
-const usersSchema = new mongoose.Schema({
+const UsersSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -16,4 +16,4 @@ const usersSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model('user', usersSchema)
+export default mongoose.model('user', UsersSchema)

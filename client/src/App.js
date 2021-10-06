@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import UsersProfilesGrid from "../src/components/usersProfiles/UsersProfilesGrid";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+import "./App.css";
+
+const App = () => {
+  
+
   return (
-    <div className="App">
+    <div className="container" style={{ height: "100%" }}>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Dating App</h1>
+        <Router>
+          <Switch>
+          <Route path="/users">
+              <UsersProfilesGrid />
+            </Route>
+            {/* <Route path="/">
+              <Home />
+            </Route>
+            <Route path="/Login">
+              <Login />
+            </Route>
+            <Route path="/Register">
+              <Register />
+            </Route>
+            <Route path="/Profile/:username">
+              <Profile />
+            </Route> */}
+          </Switch>
+        </Router>
       </header>
+      
     </div>
   );
 }
