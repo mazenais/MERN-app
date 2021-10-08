@@ -6,6 +6,7 @@ const router = express.Router();
 
 /* get all users*/
 router.get('/', 
+    // authenticate,
   (req, res) => {
      userModel.find()
        .then(files => {

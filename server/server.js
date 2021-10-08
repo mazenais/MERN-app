@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import userRoute from './routes/userRoute.js';
 import newUserRoute from './routes/newUserRoute.js';
 import cors from 'cors'
+import { JwtStrategy } from './passport.js';
 dotenv.config();
 
 
@@ -21,6 +22,10 @@ app.use(express.urlencoded({
 //using the routes for a specific api
 app.use('/api/users', userRoute);
 app.use('/api/auth', newUserRoute);
+
+// passport middleware
+app.use(passport.innitialize());
+passport.use('jwt', JwtStrategy);
 
 //const db = env.mongoURI;
 // connect to mongodb / .env file 
