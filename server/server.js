@@ -1,10 +1,11 @@
-import dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
 import express from 'express';
 import mongoose from 'mongoose';
-import userRoute from './routes/userRoute.js';
-import newUserRoute from './routes/newUserRoute.js';
+import userRoutes from './routes/userRoute.js';
+import newUserRoutes from './routes/newUserRoute.js';
 import cors from 'cors'
-import { JwtStrategy } from './passport.js';
+import { jwtStrategy } from './passport.js';
+import passport from "passport"
 dotenv.config();
 
 
@@ -20,12 +21,13 @@ app.use(express.urlencoded({
 }));
 
 //using the routes for a specific api
-app.use('/api/users', userRoute);
-app.use('/api/auth', newUserRoute);
+app.use('/api/users', userRoutes);
+app.use('/api/auth', newUserRoutes);
 
 // passport middleware
-app.use(passport.innitialize());
-passport.use('jwt', JwtStrategy);
+passport.use('jwt', jwtStrategy);
+app.use(passport.initialize());
+
 
 //const db = env.mongoURI;
 // connect to mongodb / .env file 
@@ -48,3 +50,4 @@ app.listen(port, () => {
 
 
 //const cors = require('cors');
+

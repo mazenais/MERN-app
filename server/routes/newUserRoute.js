@@ -14,7 +14,7 @@ router.post('/register',
       const {name } = req.body;
       console.log(`req.body :>>`, req.body)
 
-      newUswrSchema.findOne({ email: reqemail }, (err, user) => {
+      newUserModel.findOne({ email: reqemail }, (err, user) => {
           if (err) {
               res.send(err);
           }
@@ -27,7 +27,7 @@ router.post('/register',
                             res.send(err);
                         } else {
                             console.log('hash :>>', hash);
-                            const newUser = new newUserSchema({ name, email: reqemail, password: hash});
+                            const newUser = new newUserModel({ name, email: reqemail, password: hash});
                             newUser
                             .save()
                             .then((user) => {
@@ -51,11 +51,12 @@ router.post("/login", (req, res) => {
     const reqemail = req.body.email;
     const reqpassword = req.body.password;
 
-    newUserSchema.findOne({ email: reqemail }, (err, user) => {
+    newUserModel.findOne({ email: reqemail }, (err, user) => {
         if (err) {
             res.send(err);
         }
         if (user) {
+            console.log(user)
             //load hash from password DB
             bcrypt.compare(reqpassword, user.password, function(err, result) {
                 if (result) {
@@ -72,7 +73,8 @@ router.post("/login", (req, res) => {
                             expiresIn: process.env.JWT_EXPIRES_IN,
                         },
                         (err, token) => {
-                            if (err) { res.send(err) }
+                            console.log(token)
+                           if (err) { res.send(err) }
 
                             res.status(200).json({
                                 success: true,
@@ -89,7 +91,7 @@ router.post("/login", (req, res) => {
             });
         }
         else {
-            res.status.apply(403).send({ message: "user doesn't exist", success: false })
+            res.status(403).send({ message: "user doesn't exist", success: false })
         }
 
     });

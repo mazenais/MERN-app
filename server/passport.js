@@ -1,5 +1,5 @@
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
-import NewUserModel from "./models/newUserModel";
+import NewUserModel from "./models/newUserModel.js";
 import * as dotenv from 'dotenv';
 
 //loading .env file
@@ -10,19 +10,19 @@ const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
-export const jwtStrategy = new JwtStrategy(jwtOptions, async (payload, done) => {
-    try {
-        // identify user by ID
-        const user = await NewUserModel.findById(payload.id);
-        console.log('user :>>', user);
-        if (!user) {
-            return done(null, flase);
-        }
-        return done(null, user);
-    } catch (e) {
-        return done(e, false);
-    }
-});
+// export const jwtStrategy = new JwtStrategy(jwtOptions, async (payload, done) => {
+//     try {
+//         // identify user by ID
+//         const user = await NewUserModel.findById(payload.id);
+//         console.log('user :>>', user);
+//         if (!user) {
+//             return done(null, flase);
+//         }
+//         return done(null, user);
+//     } catch (e) {
+//         return done(e, false);
+//     }
+// });
 const jwtVerify = async (payload, next) => {
     try {
         const user = await NewUserModel.findById(payload.id);

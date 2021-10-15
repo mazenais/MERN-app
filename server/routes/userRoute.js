@@ -1,5 +1,6 @@
 import express from 'express'
-import userModel from '../models/userModel.js'
+import userModel from '../models/userModel.js';
+import passport from 'passport'
 
 
 const router = express.Router();
@@ -7,6 +8,7 @@ const router = express.Router();
 /* get all users*/
 router.get('/', 
     // authenticate,
+    passport.authenticate("jwt", { session: false }),
   (req, res) => {
      userModel.find()
        .then(files => {
