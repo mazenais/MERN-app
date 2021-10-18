@@ -1,5 +1,8 @@
-import React, { useContext } from "react";
-import { AuthContext } from './Context/AuthContext';
+import React from "react";
+import Navbar from './components/Navbar';
+import Home from './screens/Home';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 import UsersProfilesGrid from "../src/components/usersProfiles/UsersProfilesGrid";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -7,28 +10,30 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 const App = () => {
-  const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
-  console.log(user)
-  console.log(isAuthenticated)
+  
   
 
   return (
     <div className="container" style={{ height: "100%" }}>
       <header className="App-header">
-        <h1>Dating App</h1>
+        <h1 className="header">Dating App</h1>
         <Router>
+          <Navbar />
           <Switch>
-          <Route path="/users">
+          <Route exact path="/" component={Home}>
               <UsersProfilesGrid />
             </Route>
-            {/* <Route path="/">
-              <Home />
-            </Route>
-            <Route path="/Login">
+            <Route path="/Login" component={Login}>
               <Login />
             </Route>
-            <Route path="/Register">
+            <Route path="/register" component={Register}>
               <Register />
+            </Route>
+          {/* <Route path="/">
+              <UsersProfilesGrid />
+            </Route> */}
+            {/* <Route path="/">
+              <Home />
             </Route>
             <Route path="/Profile/:username">
               <Profile />
