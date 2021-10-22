@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from 'react-router-dom';
 import AuthService from "../../Services/AuthService";
 import Message from "../auth/Message.js";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Login = props => {
+  const history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [message, setMessage] = useState(null);
   const authContext = useContext(AuthContext);
@@ -16,12 +18,15 @@ const Login = props => {
     e.preventDefault();
     AuthService.login(user).then(data => {
         console.log(data);
-      const { isAuthenticated, user, message } = data;
-      if (isAuthenticated) {
+      const { isAuthenticated, user, token } = data;
+    //   if (isAuthenticated) {
         authContext.setUser(user);
         authContext.setIsAuthenticated(isAuthenticated);
-        props.history.push("/myprofile");
-      } else setMessage(message);
+        localStorage.setItem("token", token);
+        history.push("/userprofile");
+
+    //   } 
+    //   else setMessage(message);
     });
   };
 

@@ -3,8 +3,10 @@ import Navbar from './components/Navbar';
 import Home from './screens/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import UserMyProfile from './components/usersProfiles/UserProfile'
 import UsersProfilesGrid from "../src/components/usersProfiles/UsersProfilesGrid";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import MyProfile from "components/usersProfiles/MyProfile";
 
 
 
@@ -23,21 +25,18 @@ const App = () => {
           <Route exact path="/" component={Home}>
               <UsersProfilesGrid />
             </Route>
-            <Route path="/Login" component={Login}>
+            <Route path="/login" component={Login}>
               <Login />
             </Route>
             <Route path="/register" component={Register}>
               <Register />
             </Route>
-          {/* <Route path="/">
-              <UsersProfilesGrid />
-            </Route> */}
-            {/* <Route path="/">
-              <Home />
+            <Route path="/MyProfile" >
+              <MyProfile />
             </Route>
-            <Route path="/Profile/:username">
-              <Profile />
-            </Route> */}
+            {/* <Route path="/myprofile/:username">
+              <MyProfile />
+            </Route>  */}
           </Switch>
         </Router>
       </header>

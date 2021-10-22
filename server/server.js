@@ -3,6 +3,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoute.js';
 import newUserRoutes from './routes/newUserRoute.js';
+import myProfileRoute from './routes/myProfileRoute.js';
+import newUserModel from './models/newUserModel.js';
 import cors from 'cors'
 import { jwtStrategy } from './passport.js';
 import passport from "passport"
@@ -23,6 +25,16 @@ app.use(express.urlencoded({
 //using the routes for a specific api
 app.use('/api/users', userRoutes);
 app.use('/api/auth', newUserRoutes);
+app.get('api/userModel/:userModelId', myProfileRoute);
+
+app.get('/api/users/:id', function(req, res) {
+  newUserModel.findById(req.params.id)
+    .then(userFound => {
+      if(!userFound) { return res.status(404).end(); }
+      return res.status(200).json(userFound);
+    })
+    .catch(err => next(err));
+});
 
 // passport middleware
 passport.use('jwt', jwtStrategy);

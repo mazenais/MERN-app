@@ -28,11 +28,11 @@ const Register = props => {
         const { message } = data;
         setMessage(message);
         resetForm();
-        // if(!message.msgError){
-        //     timerID = setTimeout(()=> {
-        //         props.history.push('/login');
-        //     },2000)
-        // }
+        if(!message.msgError){
+            timerID = setTimeout(()=> {
+                props.history.push('/Login');
+            },2000)
+        }
     });
   };
 
@@ -46,6 +46,7 @@ const Register = props => {
         <input
           type="text"
           name="email"
+          value={user.username}
           onChange={onChange}
           className="form-control"
           placeholder="Enter Email"
@@ -56,6 +57,7 @@ const Register = props => {
         <input
           type="password"
           name="password"
+          value={user.password}
           onChange={onChange}
           className="form-control"
           placeholder="Enter Password"
@@ -66,6 +68,7 @@ const Register = props => {
         <input
           type="text"
           name="name"
+          value={user.name}
           onChange={onChange}
           className="form-control"
           placeholder="Enter Name"

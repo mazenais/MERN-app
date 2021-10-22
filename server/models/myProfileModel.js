@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const NewUsersSchema = new mongoose.Schema({
+const MyProfileSchema = new mongoose.Schema({
     name: {type: String},
     email: {
         type: String,
@@ -14,4 +14,4 @@ const NewUsersSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model('newUser', NewUsersSchema)
+export default mongoose.model('MyProfile', MyProfileSchema)

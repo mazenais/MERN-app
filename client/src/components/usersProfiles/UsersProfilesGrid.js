@@ -8,7 +8,16 @@ const UsersProfilesGrid = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const result = await axios(`http://localhost:5000/api/users`);
+      const token = localStorage.getItem("token")
+      const config = {
+        method: 'get',
+        url: 'http://localhost:5000/api/users',
+        headers: { 
+          'Authorization': `Bearer ${token}`
+        }
+      };
+      const result = await axios(config);
+
 
       console.log(result.data);
       setItems(result.data);
