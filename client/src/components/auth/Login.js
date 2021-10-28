@@ -11,7 +11,8 @@ const Login = props => {
   const authContext = useContext(AuthContext);
 
   const onChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name] : e.target.value });
+    console.log(user)
   };
 
   const onSubmit = (e) => {
@@ -19,14 +20,14 @@ const Login = props => {
     AuthService.login(user).then(data => {
         console.log(data);
       const { isAuthenticated, user, token } = data;
-    //   if (isAuthenticated) {
+      if (isAuthenticated) {
         authContext.setUser(user);
         authContext.setIsAuthenticated(isAuthenticated);
         localStorage.setItem("token", token);
-        history.push("/userprofile");
+        history.push("/profile");
 
-    //   } 
-    //   else setMessage(message);
+      } 
+      else setMessage(message);
     });
   };
 
@@ -34,8 +35,8 @@ const Login = props => {
     <div>
       <form onSubmit={onSubmit}>
         <h3>Please sign in</h3>
-        <label htmlFor="username" className="sr-only">
-          Username
+        <label htmlFor="email" className="sr-only">
+          Email:
         </label>
         <input
           type="text"
@@ -45,7 +46,7 @@ const Login = props => {
           placeholder="Enter Email"
         />
         <label htmlFor="password" className="sr-only">
-          Password
+          Password:
         </label>
         <input
           type="password"

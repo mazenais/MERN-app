@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 
 const getStyle = (props) => {
@@ -8,7 +8,6 @@ const getStyle = (props) => {
     else
         baseClass = baseClass + "alert-primary";
     return baseClass + "text-center";
-
 }
 
 

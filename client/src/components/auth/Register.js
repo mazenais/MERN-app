@@ -40,13 +40,13 @@ const Register = props => {
     <div>
       <form onSubmit={onSubmit}>
         <h3>Please Register</h3>
-        <label htmlFor="username" className="sr-only">
-          Username
+        <label htmlFor="email" className="sr-only">
+          Email
         </label>
         <input
           type="text"
           name="email"
-          value={user.username}
+          value={user.email}
           onChange={onChange}
           className="form-control"
           placeholder="Enter Email"

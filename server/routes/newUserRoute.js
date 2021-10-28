@@ -1,10 +1,12 @@
 import express from 'express'
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import newUserModel from '../models/newUserModel.js'
+import newUserModel from '../models/newUserModel.js';
+// import passport from 'passport';
 
 
 const router = express.Router();
+
 
 
 router.post('/register', 
@@ -48,8 +50,9 @@ router.post('/register',
  
 
 router.post("/login", (req, res) => {
-    const reqemail = req.body.email;
-    const reqpassword = req.body.password;
+    // if(req.isAuthenticated()){ 
+       const reqemail = req.body.email;
+       const reqpassword = req.body.password;
 
     newUserModel.findOne({ email: reqemail }, (err, user) => {
         if (err) {
@@ -79,6 +82,7 @@ router.post("/login", (req, res) => {
 
                             res.status(200).json({
                                 success: true,
+                                // isAuthenticated: true,
                                 token,
                                 user
                             });
@@ -96,7 +100,9 @@ router.post("/login", (req, res) => {
         }
 
     });
+// };
 });
+
 
 
 export default router

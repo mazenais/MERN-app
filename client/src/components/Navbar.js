@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthService from "../Services/AuthService";
 import { AuthContext } from "../Context/AuthContext";
 
-const Navbar = (props) => {
+const Navbar = props => {
   const { isAuthenticated, user, setIsAuthenticated, setUser } =
     useContext(AuthContext);
 
@@ -40,11 +40,11 @@ const Navbar = (props) => {
         <Link to="/">
           <li className="nav-item nav-link">Home</li>
         </Link>
-        <Link to="/myprofile">
-          <li className="nav-item nav-link">My Profile</li>
+        <Link to="/profile">
+          <li className="nav-item nav-link">Profile</li>
         </Link>
         <Link to="/messages">
-          <li className="nav-item nav-link">Messages</li>
+          <li className="nav-item nav-link">Messages</li>   
         </Link>
         <button
           type="button"
@@ -68,6 +68,12 @@ const Navbar = (props) => {
         </Link>
         <Link to="/Register">
           <div className="navbar-brand">Register</div>
+        </Link>
+        <Link to="/profile">
+          <li className="navbar-brand">Profile</li>
+        </Link>
+        <Link to="/messages">
+          <li className="navbar-brand">Messages</li>
         </Link>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">

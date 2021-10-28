@@ -28,11 +28,13 @@ const MyProfile = () => {
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <section className="cards">
-      {items && items.map((item) => (
+    <section >
+      {/* {items && items.map((item) => (
           <UserProfile key={item._id} item={item}></UserProfile>
 
-      ))}
+      ))} */}
+      <h3>Name: {items?.name}</h3>
+      <h3>Email: {items?.email}</h3>
     </section>
   );
 };
